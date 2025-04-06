@@ -1,4 +1,4 @@
-const Progress = ({ current, total }) => {
+const Progress = ({ current, total, hide = false, overall }) => {
   const percentage = total > 0 ? Math.round((current / total) * 100) : 0;
 
   return (
@@ -12,18 +12,22 @@ const Progress = ({ current, total }) => {
       >
         <div
           className={`flex flex-col justify-center rounded-full overflow-hidden text-xs text-white text-center whitespace-nowrap transition duration-500 ${
-            percentage === 100
+            overall
+              ? "bg-emerald-300 dark:bg-emerald-500"
+              : percentage === 100
               ? "bg-green-600 dark:bg-green-500"
               : "bg-blue-600 dark:bg-blue-500"
           }`}
           style={{ width: `${percentage}%` }}
         ></div>
       </div>
-      <div className="w-24 text-end">
-        <span className="text-sm text-gray-800 dark:text-white">
-          {current}/{total}
-        </span>
-      </div>
+      {!hide && (
+        <div className="w-24 text-end">
+          <span className="text-sm text-gray-800 dark:text-white">
+            {current}/{total}
+          </span>
+        </div>
+      )}
     </div>
   );
 };
