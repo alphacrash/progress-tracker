@@ -1,42 +1,46 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { updateTaskValue } from "../lib";
 import Progress from "./Progress";
 
-const Task = ({ task }) => {
-  const [current, setCurrent] = useState(0);
+const Task = ({ task, updateTasks }) => {
+  const [value, setValue] = useState(0);
 
   useEffect(() => {
-    const savedCurrent = localStorage.getItem(`task-${task.id}-current`);
-    if (savedCurrent) setCurrent(parseInt(savedCurrent));
-  }, [task.id]);
+    setValue(task.value);
+  }, [task]);
 
-  const handleCurrentChange = (e) => {
-    const value = Math.max(
-      0,
-      Math.min(parseInt(e.target.value) || 0, task.total)
-    );
-    setCurrent(value);
-    localStorage.setItem(`task-${task.id}-current`, value.toString());
+  const updateTaskValueChange = async () => {
+    await updateTaskValue(task.id, value);
+    await updateTasks();
   };
 
   return (
-    <div className="p-4 border rounded-lg mb-4">
+    <div className="p-4 border border-gray-400 rounded-lg mb-4">
       <div className="flex flex-col items-center space-y-4">
-        <h3 className="text-lg font-semibold text-center">{task.title}</h3>
-        <div className="w-full space-y-3">
-          <div className="flex justify-center gap-x-2">
+        <div className="group flex w-full justify-between">
+          <h3 className="text-lg font-semibold text-center">{task.title}</h3>
+          <div className="hidden group-hover:flex gap-2">
             <input
               type="number"
               min="0"
               max={task.total}
-              value={current}
-              onChange={handleCurrentChange}
-              className="w-20 px-2 py-1 border rounded text-center"
-              placeholder="Current"
+              value={value}
+              className="rounded text-right appearance-none 
+                        [&::-webkit-outer-spin-button]:appearance-none 
+                        [&::-webkit-inner-spin-button]:appearance-none 
+                        [&::-moz-appearance:textfield]"
+              onChange={(e) => setValue(e.target.value)}
             />
-            <span className="text-gray-500">/</span>
-            <span className="w-20 px-2 py-1 text-center">{task.total}</span>
+            <div
+              onClick={updateTaskValueChange}
+              className="cursor-pointer border rounded-full border-blue-500 px-2"
+            >
+              Submit
+            </div>
           </div>
-          <Progress current={current} total={task.total} />
+        </div>
+        <div className="w-full space-y-3">
+          <Progress current={task.value} total={task.total} />
         </div>
       </div>
     </div>
