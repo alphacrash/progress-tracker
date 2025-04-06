@@ -5,6 +5,7 @@ const AddItem = ({ updateTasks }) => {
   const [isAdded, setIsAdded] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [task, setTask] = useState({
+    category: "",
     title: "",
     value: 0,
     total: 0,
@@ -33,6 +34,23 @@ const AddItem = ({ updateTasks }) => {
       ) : (
         <>
           <div className="flex flex-col gap-4">
+            <div className="max-w-sm">
+              <label
+                htmlFor="category"
+                className="block text-sm font-medium mb-2"
+              >
+                Category
+              </label>
+              <input
+                type="text"
+                id="category"
+                name="category"
+                placeholder="Category"
+                value={task.category}
+                onChange={handleChange}
+                className="numeric-input"
+              />
+            </div>
             <div className="max-w-sm">
               <label htmlFor="title" className="block text-sm font-medium mb-2">
                 Title
