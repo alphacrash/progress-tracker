@@ -17,6 +17,21 @@ export const fetchTasks = async () => {
   }
 };
 
+export const createTask = async (task) => {
+  try {
+    const { data } = await axios.post(API_URL, task, {
+      headers: {
+        "Content-Type": "application/json",
+        apikey: import.meta.env.VITE_SUPABASE_API_KEY,
+      },
+    });
+    return data;
+  } catch (error) {
+    console.error("Error creating task:", error);
+    throw error;
+  }
+};
+
 export const updateTaskValue = async (taskId, value) => {
   try {
     const { data } = await axios.patch(
@@ -34,6 +49,21 @@ export const updateTaskValue = async (taskId, value) => {
     return data;
   } catch (error) {
     console.error("Error updating task:", error);
+    throw error;
+  }
+};
+
+export const deleteTask = async (taskId) => {
+  try {
+    const { data } = await axios.delete(`${API_URL}?id=eq.${taskId}`, {
+      headers: {
+        "Content-Type": "application/json",
+        apikey: import.meta.env.VITE_SUPABASE_API_KEY,
+      },
+    });
+    return data;
+  } catch (error) {
+    console.error("Error deleting task:", error);
     throw error;
   }
 };
