@@ -30,7 +30,7 @@ const UpdateItem = ({ task, updateTasks }) => {
             max={task.total}
             value={value}
             placeholder="Enter new value"
-            className="numeric-input"
+            className="app-input"
             onChange={(e) => setValue(e.target.value)}
           />
           <button

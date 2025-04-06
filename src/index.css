@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
-.numeric-input {
+.app-input {
   @apply text-left border py-2.5 sm:py-3 px-4 block w-full border-gray-200 rounded-lg sm:text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none;
 }
 
-.numeric-input::-webkit-outer-spin-button,
-.numeric-input::-webkit-inner-spin-button {
+.app-input::-webkit-outer-spin-button,
+.app-input::-webkit-inner-spin-button {
   appearance: none;
   margin: 0;
 }

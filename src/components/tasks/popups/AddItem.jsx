@@ -16,7 +16,9 @@ const AddItem = ({ updateTasks }) => {
     const { name, value } = e.target;
     setTask((prevTask) => ({
       ...prevTask,
-      [name]: name === "title" ? value : parseInt(value, 10),
+      [name]: ["title", "category"].includes(name)
+        ? value
+        : parseInt(value, 10),
     }));
   };
 
@@ -48,7 +50,7 @@ const AddItem = ({ updateTasks }) => {
                 placeholder="Category"
                 value={task.category}
                 onChange={handleChange}
-                className="numeric-input"
+                className="app-input"
               />
             </div>
             <div className="max-w-sm">
@@ -62,7 +64,7 @@ const AddItem = ({ updateTasks }) => {
                 placeholder="Title"
                 value={task.title}
                 onChange={handleChange}
-                className="numeric-input"
+                className="app-input"
               />
             </div>
             <div className="max-w-sm">
@@ -76,7 +78,7 @@ const AddItem = ({ updateTasks }) => {
                 placeholder="Value"
                 value={task.value}
                 onChange={handleChange}
-                className="numeric-input"
+                className="app-input"
               />
             </div>
             <div className="max-w-sm">
@@ -90,7 +92,7 @@ const AddItem = ({ updateTasks }) => {
                 placeholder="Total"
                 value={task.total}
                 onChange={handleChange}
-                className="numeric-input"
+                className="app-input"
               />
             </div>
             <div className="max-w-sm">
@@ -107,7 +109,7 @@ const AddItem = ({ updateTasks }) => {
                 placeholder="Priority"
                 value={task.priority}
                 onChange={handleChange}
-                className="numeric-input"
+                className="app-input"
               />
             </div>
           </div>
