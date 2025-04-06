@@ -3,7 +3,13 @@ export const isSecretValid = () => {
 };
 
 export const categorizeTasks = (tasks) => {
-  tasks.sort((a, b) => b.priority - a.priority);
+  tasks.sort((a, b) => {
+    if (a.category === b.category) {
+      return b.priority - a.priority;
+    }
+    return a.category - b.category;
+  });
+
   return tasks.reduce((acc, task) => {
     const { category } = task;
     if (!acc[category]) {

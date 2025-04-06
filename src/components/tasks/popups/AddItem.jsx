@@ -5,7 +5,7 @@ const AddItem = ({ updateTasks }) => {
   const [isAdded, setIsAdded] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [task, setTask] = useState({
-    category: "",
+    category: 0,
     title: "",
     value: 0,
     total: 0,
@@ -16,9 +16,7 @@ const AddItem = ({ updateTasks }) => {
     const { name, value } = e.target;
     setTask((prevTask) => ({
       ...prevTask,
-      [name]: ["title", "category"].includes(name)
-        ? value
-        : parseInt(value, 10),
+      [name]: ["title"].includes(name) ? value : parseInt(value, 10),
     }));
   };
 
@@ -44,7 +42,7 @@ const AddItem = ({ updateTasks }) => {
                 Category
               </label>
               <input
-                type="text"
+                type="number"
                 id="category"
                 name="category"
                 placeholder="Category"
