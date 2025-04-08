@@ -11,7 +11,7 @@ const Header = ({ categorizedTasks, updateTasks }) => {
     <div>
       <div className="flex items-end justify-center gap-4">
         <h1 className="text-3xl text-blue-600 font-bold">
-          Task Progress Tracker
+          Dynamic Programming Buster
         </h1>
         <Popup
           title="Add Task"
