@@ -38,6 +38,22 @@ const TaskItem = ({ task, updateTasks }) => {
         <div className="w-full space-y-3">
           <Progress current={task.value} total={task.total} />
         </div>
+        <div className="flex gap-8 items-center">
+          <div className="flex gap-2">
+            <span>Deadline</span>
+            <span className="px-3 py-1 rounded-full bg-amber-200 text-gray-700 text-sm">
+              {task.deadline}
+            </span>
+          </div>
+          {task.actual_end && (
+            <div className="flex gap-2 items-center">
+              <span>Actual End</span>
+              <span className="px-3 py-1 rounded-full bg-green-200 text-gray-700 text-sm">
+                {task.deadline}
+              </span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
