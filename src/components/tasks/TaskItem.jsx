@@ -49,7 +49,7 @@ const TaskItem = ({ task, updateTasks }) => {
             <div className="flex gap-2 items-center">
               <span>Actual End</span>
               <span className="px-3 py-1 rounded-full bg-green-200 text-gray-700 text-sm">
-                {task.deadline}
+                {task.actual_end}
               </span>
             </div>
           )}
