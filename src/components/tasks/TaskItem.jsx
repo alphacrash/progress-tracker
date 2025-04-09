@@ -9,7 +9,13 @@ const TaskItem = ({ task, updateTasks }) => {
     <div className="p-4 border border-gray-400 rounded-lg mb-4">
       <div className="flex flex-col space-y-4">
         <div className="flex justify-between">
-          <h3 className="text-lg font-semibold text-center">{task.title}</h3>
+          <h3
+            className={`text-lg font-semibold text-center ${
+              task.value === task.total ? "line-through text-gray-600" : ""
+            }`}
+          >
+            {task.title}
+          </h3>
           <div className="flex gap-4">
             <Popup
               title="Update Task"
