@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchTasksThunk } from "../../../features/taskSlice";
 import { updateTaskValue } from "../../../lib/api";
 
-const UpdateItem = ({ task, updateTasks }) => {
+const UpdateItem = ({ task }) => {
   const [isUpdated, setIsUpdated] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
-
   const [value, setValue] = useState(0);
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setValue(task.value);
@@ -14,7 +17,7 @@ const UpdateItem = ({ task, updateTasks }) => {
   const updateTaskValueChange = async () => {
     setIsButtonDisabled(true);
     await updateTaskValue(task.id, value);
-    await updateTasks();
+    await dispatch(fetchTasksThunk());
     setIsUpdated(true);
   };
 

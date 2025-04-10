@@ -1,7 +1,9 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchTasksThunk } from "../../../features/taskSlice";
 import { createTask } from "../../../lib/api";
 
-const AddItem = ({ updateTasks }) => {
+const AddItem = () => {
   const [isAdded, setIsAdded] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   const [task, setTask] = useState({
@@ -11,6 +13,8 @@ const AddItem = ({ updateTasks }) => {
     total: 0,
     priority: 0,
   });
+
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,7 +27,7 @@ const AddItem = ({ updateTasks }) => {
   const submitTaskCreation = async () => {
     setIsButtonDisabled(true);
     await createTask(task);
-    await updateTasks();
+    await dispatch(fetchTasksThunk());
     setIsAdded(true);
   };
 

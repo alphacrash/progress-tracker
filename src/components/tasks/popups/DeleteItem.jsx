@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { deleteTask } from "../../../lib/api";
+import { fetchTasksThunk } from "../../../features/taskSlice";
+import { useDispatch } from "react-redux";
 
-const DeleteItem = ({ taskId, updateTasks }) => {
+const DeleteItem = ({ taskId }) => {
   const [isDeleted, setIsDeleted] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+  const dispatch = useDispatch();
 
   const updateTaskValueChange = async () => {
     setIsButtonDisabled(true);
     await deleteTask(taskId);
-    await updateTasks();
+    await dispatch(fetchTasksThunk());
     setIsDeleted(true);
   };
 
