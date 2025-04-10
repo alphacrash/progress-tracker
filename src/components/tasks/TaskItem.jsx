@@ -4,7 +4,7 @@ import Progress from "../Progress";
 import DeleteItem from "./popups/DeleteItem";
 import UpdateItem from "./popups/UpdateItem";
 
-const TaskItem = ({ task, updateTasks }) => {
+const TaskItem = ({ task }) => {
   return (
     <div className="p-4 border border-gray-400 rounded-lg mb-4">
       <div className="flex flex-col space-y-4">
@@ -25,7 +25,7 @@ const TaskItem = ({ task, updateTasks }) => {
                   className="text-gray-500 hover:text-amber-500"
                 />
               }
-              content={<UpdateItem task={task} updateTasks={updateTasks} />}
+              content={<UpdateItem task={task} />}
             />
             <Popup
               title="Delete Task"
@@ -35,9 +35,7 @@ const TaskItem = ({ task, updateTasks }) => {
                   className="text-gray-500 hover:text-red-500"
                 />
               }
-              content={
-                <DeleteItem taskId={task.id} updateTasks={updateTasks} />
-              }
+              content={<DeleteItem taskId={task.id} />}
             />
           </div>
         </div>

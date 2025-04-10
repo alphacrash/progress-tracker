@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const API_URL = "https://gfwbblvefmeibqvinxpi.supabase.co/rest/v1/tasks";
+const API_URL = `https://${
+  import.meta.env.VITE_SUPABASE_URL
+}.supabase.co/rest/v1/tasks`;
 
 export const fetchTasks = async () => {
   try {

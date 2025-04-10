@@ -1,30 +1,48 @@
-import { createSlice } from "@reduxjs/toolkit";
-const task = {
-     id: 1,
-     title: "Redux",
-     value: 4,
-     total: 21,
-     priority: 1,
-     deadline: "15 april 2025",
-     category: 1,
-};
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { fetchTasks } from "../lib/api";
+import { categorizeTasks } from "../lib/utils";
+
+export const fetchTasksThunk = createAsyncThunk(
+  "task/fetchTasksThunk",
+  async () => {
+    const data = await fetchTasks();
+    return data;
+  }
+);
+
 const initialState = {
-     value: [],
+  value: [],
+  loading: false,
 };
 
 export const taskSlice = createSlice({
-     name: "task",
-     initialState,
-     reducers: {
-          addTask: (state) => {
-               state.value.push(task);
-          },
-     },
-     // extraReducers: (builder) => {
-     //      builder.addCase
-     // }
+  name: "task",
+  initialState,
+  reducers: {
+    resetTasks: (state) => {
+      state.value = [];
+      state.loading = false;
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchTasksThunk.pending, (state) => {
+        state.value = [];
+        state.loading = true;
+      })
+      .addCase(fetchTasksThunk.fulfilled, (state, action) => {
+        if (Array.isArray(action.payload)) {
+          state.value = categorizeTasks(action.payload);
+        }
+        state.loading = false;
+      })
+      .addCase(fetchTasksThunk.rejected, (state) => {
+        state.value = [];
+        state.loading = false;
+      });
+  },
 });
 
-export const { addTask } = taskSlice.actions;
+export const { resetTasks } = taskSlice.actions;
 
 export default taskSlice.reducer;

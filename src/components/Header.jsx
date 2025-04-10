@@ -1,11 +1,13 @@
 import { CirclePlus } from "lucide-react";
-import Popup from "./Popup";
-import AddItem from "./tasks/popups/AddItem";
-import Progress from "./Progress";
+import { useSelector } from "react-redux";
 import { getSumOfValuesAndTotals } from "../lib/utils";
+import Popup from "./Popup";
+import Progress from "./Progress";
+import AddItem from "./tasks/popups/AddItem";
 
-const Header = ({ categorizedTasks, updateTasks }) => {
-  const { value, total } = getSumOfValuesAndTotals(categorizedTasks);
+const Header = () => {
+  const tasks = useSelector((state) => state.task.value);
+  const { value, total } = getSumOfValuesAndTotals(tasks);
 
   return (
     <div>
@@ -21,7 +23,7 @@ const Header = ({ categorizedTasks, updateTasks }) => {
               className="text-gray-500 hover:text-green-500"
             />
           }
-          content={<AddItem updateTasks={updateTasks} />}
+          content={<AddItem />}
         />
       </div>
       <div className="mt-2">
