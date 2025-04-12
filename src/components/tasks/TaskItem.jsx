@@ -46,7 +46,7 @@ const TaskItem = ({ task }) => {
           <div className="flex gap-2 items-center">
             {task.actual_start ? (
               <>
-                <div>Actual Start</div>
+                <div>Start</div>
                 <div className="px-3 py-1 rounded-full bg-gray-200 text-gray-700 text-sm">
                   {task.actual_start}
                 </div>
@@ -63,7 +63,7 @@ const TaskItem = ({ task }) => {
           <div className="flex gap-2 items-center">
             {task.actual_end ? (
               <>
-                <div>Actual End</div>
+                <div>End</div>
                 <div>
                   <span className="px-3 py-1 rounded-l-full bg-gray-200 text-gray-700 text-sm line-through">
                     {task.expected_end}
