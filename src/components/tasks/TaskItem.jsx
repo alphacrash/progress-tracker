@@ -42,21 +42,41 @@ const TaskItem = ({ task }) => {
         <div className="w-full space-y-3">
           <Progress current={task.value} total={task.total} />
         </div>
-        <div className="flex gap-8 items-center">
-          <div className="flex gap-2">
-            <span>Deadline</span>
-            <span className="px-3 py-1 rounded-full bg-amber-200 text-gray-700 text-sm">
-              {task.deadline}
-            </span>
+        <div className="flex justify-between">
+          <div className="flex gap-2 items-center">
+            {task.actual_start ? (
+              <>
+                <span>Actual Start</span>
+                <span className="px-3 py-1 rounded-full bg-gray-200 text-gray-700 text-sm">
+                  {task.actual_start}
+                </span>
+              </>
+            ) : (
+              <>
+                <span>Expected Start</span>
+                <span className="px-3 py-1 rounded-full bg-amber-200 text-gray-700 text-sm">
+                  {task.expected_start}
+                </span>
+              </>
+            )}
           </div>
-          {task.actual_end && (
-            <div className="flex gap-2 items-center">
-              <span>Actual End</span>
-              <span className="px-3 py-1 rounded-full bg-green-200 text-gray-700 text-sm">
-                {task.actual_end}
-              </span>
-            </div>
-          )}
+          <div className="flex gap-2 items-center">
+            {task.actual_end ? (
+              <>
+                <span>Actual End</span>
+                <span className="px-3 py-1 rounded-full bg-green-200 text-gray-700 text-sm">
+                  {task.actual_end}
+                </span>
+              </>
+            ) : (
+              <>
+                <span>Expected End</span>
+                <span className="px-3 py-1 rounded-full bg-amber-200 text-gray-700 text-sm">
+                  {task.expected_end}
+                </span>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
