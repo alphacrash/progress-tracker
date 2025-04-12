@@ -46,34 +46,39 @@ const TaskItem = ({ task }) => {
           <div className="flex gap-2 items-center">
             {task.actual_start ? (
               <>
-                <span>Actual Start</span>
-                <span className="px-3 py-1 rounded-full bg-gray-200 text-gray-700 text-sm">
+                <div>Actual Start</div>
+                <div className="px-3 py-1 rounded-full bg-gray-200 text-gray-700 text-sm">
                   {task.actual_start}
-                </span>
+                </div>
               </>
             ) : (
               <>
-                <span>Expected Start</span>
-                <span className="px-3 py-1 rounded-full bg-amber-200 text-gray-700 text-sm">
+                <div>Expected Start</div>
+                <div className="px-3 py-1 rounded-full bg-amber-200 text-gray-700 text-sm">
                   {task.expected_start}
-                </span>
+                </div>
               </>
             )}
           </div>
           <div className="flex gap-2 items-center">
             {task.actual_end ? (
               <>
-                <span>Actual End</span>
-                <span className="px-3 py-1 rounded-full bg-green-200 text-gray-700 text-sm">
-                  {task.actual_end}
-                </span>
+                <div>Actual End</div>
+                <div>
+                  <span className="px-3 py-1 rounded-l-full bg-gray-200 text-gray-700 text-sm line-through">
+                    {task.expected_end}
+                  </span>
+                  <span className="px-3 py-1 rounded-r-full bg-green-200 text-gray-700 text-sm">
+                    {task.actual_end}
+                  </span>
+                </div>
               </>
             ) : (
               <>
-                <span>Expected End</span>
-                <span className="px-3 py-1 rounded-full bg-amber-200 text-gray-700 text-sm">
+                <div>Expected End</div>
+                <div className="px-3 py-1 rounded-full bg-amber-200 text-gray-700 text-sm">
                   {task.expected_end}
-                </span>
+                </div>
               </>
             )}
           </div>
