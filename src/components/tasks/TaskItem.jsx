@@ -39,6 +39,7 @@ const TaskItem = ({ task }) => {
             />
           </div>
         </div>
+        {task.comments && <div className="w-full text-gray-600 leading-none text-sm">{task.comments}</div>}
         <div className="w-full space-y-3">
           <Progress current={task.value} total={task.total} />
         </div>
