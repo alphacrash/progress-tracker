@@ -34,13 +34,24 @@ export const createTask = async (task) => {
   }
 };
 
-export const updateTaskValue = async (taskId, value) => {
+export const updateTaskValue = async (task, value) => {
   try {
+    const today = new Date();
+    const formattedDate = today
+      .toLocaleDateString("en-GB", {
+        day: "2-digit",
+        month: "short",
+      })
+      .replace(" ", "-"); // Format: DD-MMM
+
+    const updateData = {
+      value: value,
+      actual_end: Number(value) === Number(task.total) ? formattedDate : null,
+    };
+
     const { data } = await axios.patch(
-      `${API_URL}?id=eq.${taskId}`,
-      {
-        value: value,
-      },
+      `${API_URL}?id=eq.${task.id}`,
+      updateData,
       {
         headers: {
           "Content-Type": "application/json",

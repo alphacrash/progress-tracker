@@ -16,7 +16,7 @@ const UpdateItem = ({ task }) => {
 
   const updateTaskValueChange = async () => {
     setIsButtonDisabled(true);
-    await updateTaskValue(task.id, value);
+    await updateTaskValue(task, value);
     await dispatch(fetchTasksThunk());
     setIsUpdated(true);
   };
