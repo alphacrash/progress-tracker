@@ -39,7 +39,11 @@ const TaskItem = ({ task }) => {
             />
           </div>
         </div>
-        {task.comments && <div className="w-full text-gray-600 leading-none text-sm">{task.comments}</div>}
+        {task.comments && (
+          <div className="w-full text-gray-600 leading-none text-sm">
+            {task.comments}
+          </div>
+        )}
         <div className="w-full space-y-3">
           <Progress current={task.value} total={task.total} />
         </div>
@@ -54,10 +58,14 @@ const TaskItem = ({ task }) => {
               </>
             ) : (
               <>
-                <div>Expected Start</div>
-                <div className="px-3 py-1 rounded-full bg-amber-200 text-gray-700 text-sm">
-                  {task.expected_start}
-                </div>
+                {task.expected_start && (
+                  <>
+                    <div>Expected Start</div>
+                    <div className="px-3 py-1 rounded-full bg-amber-200 text-gray-700 text-sm">
+                      {task.expected_start}
+                    </div>
+                  </>
+                )}
               </>
             )}
           </div>
@@ -76,10 +84,14 @@ const TaskItem = ({ task }) => {
               </>
             ) : (
               <>
-                <div>Expected End</div>
-                <div className="px-3 py-1 rounded-full bg-amber-200 text-gray-700 text-sm">
-                  {task.expected_end}
-                </div>
+                {task.expected_end && (
+                  <>
+                    <div>End</div>
+                    <div className="px-3 py-1 rounded-full bg-amber-200 text-gray-700 text-sm">
+                      {task.expected_end}
+                    </div>
+                  </>
+                )}
               </>
             )}
           </div>
