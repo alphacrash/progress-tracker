@@ -13,7 +13,7 @@ const Header = () => {
     <div>
       <div className="flex items-end justify-center gap-4">
         <h1 className="text-3xl text-blue-600 font-bold">
-          Progress - Dynamic Programming
+          Progress
         </h1>
         <Popup
           title="Add Task"
